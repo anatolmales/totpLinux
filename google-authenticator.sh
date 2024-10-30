@@ -1,3 +1,7 @@
+function pause(){
+ read -s -n 1 -p "Press any key to continue . . ."
+ echo ""
+}
 #install google-authenticator
 sudo apt install libpam-google-authenticator -y
 pause
