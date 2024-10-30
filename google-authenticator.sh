@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# Проверка прав суперпользователя
+if [ "$EUID" -ne 0 ]; then
+    echo "Пожалуйста, запустите скрипт с правами суперпользователя"
+    exec sudo "$0" "$@"  # Перезапускает скрипт с sudo
+    exit
+fi
 #install google-authenticator
 sudo apt install libpam-google-authenticator -y
 sudo echo 'auth required pam_google_authenticator.so' >> /etc/pam.d/sshd
