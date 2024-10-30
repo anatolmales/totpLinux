@@ -8,8 +8,13 @@ fi
 # Установка google-authenticator
 sudo apt install libpam-google-authenticator -y
 
-# Добавление строки в файл PAM
-echo 'auth required pam_google_authenticator.so' | sudo tee -a /etc/pam.d/sshd > /dev/null
+
+# Проверка на наличие строки "auth required pam_google_authenticator.so" в /etc/pam.d/sshd
+if ! grep -q "^auth required pam_google_authenticator.so" /etc/pam.d/sshd; then
+    echo 'auth required pam_google_authenticator.so' | sudo tee -a /etc/pam.d/sshd > /dev/null
+else
+    echo "Строка 'auth required pam_google_authenticator.so' уже присутствует в /etc/pam.d/sshd"
+fi
 
 # Резервное копирование конфигурации SSH
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
