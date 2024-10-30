@@ -1,4 +1,9 @@
 #!/bin/bash
+# Проверка, что скрипт не запущен от имени root
+if [[ "$EUID" -eq 0 ]]; then
+    echo "Ошибка: этот скрипт не должен запускаться от имени root или sudo."
+    exit 1
+fi
 
 # Установка google-authenticator
 sudo apt install libpam-google-authenticator -y
