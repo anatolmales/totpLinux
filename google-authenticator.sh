@@ -24,8 +24,5 @@ fi
 cd ~
 google-authenticator -t -f -d -w 15 -r 3 -R 60 -C -e 5
 
-# Отображение секретного ключа
-cat ./.google_authenticator
-
 # Перезапуск службы SSH
 sudo systemctl restart sshd
