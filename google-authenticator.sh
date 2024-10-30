@@ -1,5 +1,5 @@
 #install google-authenticator
-sudo apt-get install libpam-google-authenticator
+sudo apt-get install libpam-google-authenticator -y
 sudo echo 'auth required pam_google_authenticator.so' > /etc/pam.d/sshd
 #backup
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
