@@ -8,5 +8,6 @@ sudo sed -i -e 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentica
 sudo sed -i -e 's/KbdInteractiveAuthentication no/KbdInteractiveAuthentication yes/g' /etc/ssh/sshd_config
 sudo grep -q '^PermitRootLogin' /etc/ssh/sshd_config && sed -i 's/^PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config || sudo echo 'PermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
 cd ~
-google-authenticator -t -f -d -w 3 -e 10 -r 3 -R 30
+google-authenticator -t -f -d -w 15 -r 3 -R 60 -C -e 5
+cat ./.google_authenticator
 sudo  systemctl restart sshd
