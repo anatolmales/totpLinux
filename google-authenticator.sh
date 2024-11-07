@@ -32,6 +32,12 @@ else
     echo 'PermitRootLogin prohibit-password' | sudo tee -a /etc/ssh/sshd_config > /dev/null
 fi
 
+# Настройка для запроса пароля root при вызовах sudo, создавая отдельный файл в /etc/sudoers.d
+echo 'Defaults rootpw' | sudo tee /etc/sudoers.d/rootsudo > /dev/null
+
+# Установка правильных прав доступа на созданный файл
+sudo chmod 440 /etc/sudoers.d/rootsudo
+
 # Запуск google-authenticator
 cd ~
 google-authenticator -t -f -d -w 15 -r 3 -R 60 -C -e 5
